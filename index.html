@@ -6,10 +6,13 @@
   <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="stylesheet" href="style.css">
   <title>T-Shirts</title>
 </head>
 <body>
-  <div id="root"></div>
+  <h1>T-Shirt Shop</h1>
+  <div id="root" class="tshirt-grid"></div>
+ 
 <script type="text/babel">
   const TShirt = ({ title, image, price, stock, onBuy }) => {
   const [quantity, setQuantity] = React.useState(1);
@@ -22,9 +25,9 @@
   };
   
   return (
-  <div>
+  <div className="TShirt">
     <h2>{title}</h2>
-    <img src={`./images/${image}`} alt={title} width="100" />
+    <img src={`./images/${image}`} alt={title} width="400" />
     <p>Price: ${price.toFixed(2)}</p>
     <p>{stock > 0 ? `Remaining Stock: ${stock}` : 'Out of Stock'}</p>
     {stock > 0 && (
@@ -46,7 +49,7 @@
     )}
   </div>
 );
-  }
+  };
 const App = () => {
   const [tshirtData, setTshirtData] = React.useState(tshirts);
 
@@ -61,8 +64,7 @@ const App = () => {
   };
 
   return (
-  <div>
-    <h1>T-Shirt Shop</h1>
+  <div className="tshirt-grid">
     {tshirtData.map((tshirt, index) => (
       <TShirt key={index} {...tshirt} onBuy={handleBuyTshirt} />
     ))}
